@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="Form.css">
+</head>
+<body>
+    <h1 class="cntr">Form Validation</h1>
+    <div class="box">
+    <form action="" >
+        <label for="">Name:</label><br>
+       <input type="text" id="name"> <p id="nameerror"></p> <br>
+
+        <label for=""> Email  :</label><br>
+        <input type="text" id="email" required> <p id="emailerror"></p> <br>
+
+     
+
+        <label for=""> Password  :</label><br>
+        <input type="password" id="password"> <p id="passerror"></p> <br>
+
+        <label for=""> Confirm Password  :</label><br>
+        <input type="password" id="confirmpassword"> <p id="confirmpasserror"></p> <br>
+
+        <label for=""> Phone :</label><br>
+        <input type="number" id="number"> <p id="numbererror"></p> <br>
+
+
+        <input type="submit" value="submit" onclick="return formValidate()">
+    </form>
+</div>
+    
+    <script >
+        function formValidate(){
+    var name =  document.getElementById('name').value;
+    var password =  document.getElementById('password').value;
+    let email=document.getElementById('email').value;
+    let number=document.getElementById('number').value;
+    let confirmpassword=document.getElementById('confirmpassword').value;
+    
+// Name
+    if(name === ""){
+ document.getElementById('nameerror').innerHTML ="*Name cannot be empty"; 
+    return false;
+     }
+
+   else if(name.length < 2 ){
+  document.getElementById('nameerror').innerHTML ="*Name Length of name is too short"; 
+    return false;
+   }
+// password
+    if(password.length < 8){
+     document.getElementById('passerror').innerHTML="*Password must be at least 8 characters"
+        return false;
+    }
+
+    else if(password.search(/[0-9]/)==-1){
+     document.getElementById('passerror').innerHTML="*Password conatin Atleast 1 Numeric Character"
+        return false;
+    }
+
+    else if(password.search(/[A-Z]/)==-1){
+     document.getElementById('passerror').innerHTML="*Password conatin Atleast 1 UpperCase Character"
+        return false;
+    }
+
+    else if(password.search(/[a-z]/)==-1){
+     document.getElementById('passerror').innerHTML="*Password conatin Atleast 1 LowerCase Character"
+        return false;
+    }
+    else if(password.search(/[!\@\$\%\&\*\(\)\;\"\"\,\<\>\-\_\?]/)==-1){
+     document.getElementById('passerror').innerHTML="*Password conatin Atleast 1 Special Symbol "
+        return false;
+    }
+
+    
+
+
+
+
+
+    else if(confirmpassword.length == ""){     
+     document.getElementById('confirmpasserror').innerHTML="*Confirm Password cannot be empty"
+        return false;
+    }
+
+    else if(confirmpassword.length != password.length ){
+     document.getElementById('confirmpasserror').innerHTML="*Password and confirm Password Should match"
+        return false;
+    }
+
+
+// Email
+
+    if(email === ""){
+ document.getElementById('emailerror').innerHTML ="*Email cannot be empty"; 
+    return false;
+     }
+
+     if(email.idexOf('@') <=0){
+ document.getElementById('emailerror').innerHTML ="*Invalid position Of @"; 
+    return false;
+     }
+
+     if(email.charAt(email.length-4)!='.') 
+     {
+ document.getElementById('emailerror').innerHTML ="*Invalid position Of ."; 
+    return false;
+     }
+
+    else if(email.length > 15){
+     document.getElementById('emailerror').innerHTML="*Email lenght is too long"
+        return false;
+    }
+// Number
+    if(number === ""){
+ document.getElementById('numbererror').innerHTML ="*Phone Number cannot be empty"; 
+    return false;
+     }
+
+    else if( number.length < 10){
+     document.getElementById('numbererror').innerHTML="*Phone Number lenght is too Short"
+        return false;
+    }
+
+    else if( number.length > 11){
+     document.getElementById('numbererror').innerHTML="*Phone Number lenght is too long"
+        return false;
+    }
+
+  
+
+
+    
+    return true;
+
+}
+    </script>
+</body>
+</html>
